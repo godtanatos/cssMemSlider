@@ -1,19 +1,28 @@
 body {
   background-color: grey;
+  height: auto;
 }
 .slider {
   margin: 100px auto;
-  max-width: calc(100% - 20%);
-  height: 100%;
+  max-width: calc(100% - 10%);
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 }
 .container_for_img {
+  order: 1;
   display: flex;
-  border-radius: 20px;
-  height: 500px;
-  overflow: hidden;
   width: 100%;
+  max-height: 800px;
+  border-radius: 20px;
+  object-fit: contain;
+  object-position: center;
+  overflow: hidden;
 }
 .container_for_img img {
+  height: auto;
   flex: 0 0 100%;
   object-fit: cover;
   z-index: 0;
@@ -68,10 +77,13 @@ body {
   }
 }
 .container_for_bulit {
+  order: 3;
+  gap: 10px;
   display: flex;
-  cursor: pointer;
+  align-items: center;
 }
 .bulit {
+  margin: auto;
   box-sizing: border-box;
   width: 20px;
   height: 20px;
@@ -91,5 +103,54 @@ body {
 }
 
 .container_bulit {
-  height: 40px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.container_for_сommentToPicture {
+  order: 2;
+  width: 50%;
+  color: white;
+  font-size: 2em;
+  line-height: 30px;
+  display: flex;
+
+  overflow: hidden;
+}
+.сommentToPictur {
+  flex: 0 0 100%;
+  animation: animation_rigth;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+}
+.сommentToPictur {
+  order: 3;
+  z-index: 0;
+}
+.сommentToPictur:first-child {
+  order: 1;
+}
+.сommentToPictur.active {
+  animation: animation_left;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+}
+@media (max-width: 600px) {
+  .slider {
+    max-width: 100%;
+  }
+  .container_for_сommentToPicture {
+    order: 3;
+    width: 100%;
+  }
+  .container_for_bulit {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,5 +1,7 @@
 const pictures = document.querySelector('.container_for_img').querySelectorAll('img');
+const comments = document.querySelectorAll('.сommentToPictur')
 const bullets = document.querySelectorAll('.container_bulit');
+
 bullets.forEach(elem => {
     elem.addEventListener("click", changeBullet, true)
 })
@@ -23,6 +25,10 @@ function changeBullet(e) {
     pictures.forEach(elem => {
         elem.classList.remove('active');
         pictures[slide - 1].classList.add('active');
+    })
+    comments.forEach(elem => {
+        elem.classList.remove('active');
+        comments[slide - 1].classList.add('active');
     })
 }
 
