@@ -153,4 +153,10 @@ body {
     width: 100%;
     justify-content: center;
   }
+  .container_for_img img {
+    width: 80%;
+  }
+  .container_for_сommentToPicture {
+    font-size: 1.5em;
+  }
 }
