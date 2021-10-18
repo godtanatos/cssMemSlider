@@ -1,49 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: grey;
-  height: auto;
+  height: 100%;
 }
-.slider {
-  margin: 100px auto;
-  max-width: calc(100% - 10%);
-  height: auto;
+
+.wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   justify-content: space-between;
+  height: 40vh;
+  margin: 100px auto;
+  position: relative;
+  max-width: 80%;
 }
-.container_for_img {
-  order: 1;
-  display: flex;
-  width: 100%;
-  max-height: 800px;
-  border-radius: 20px;
-  object-fit: contain;
-  object-position: center;
-  overflow: hidden;
-}
-.container_for_img img {
-  height: auto;
+
+.slider {
   flex: 0 0 100%;
-  object-fit: cover;
-  z-index: 0;
+  overflow: hidden;
+  /* clip-path: inset(0 75% 0 0); */
+  background-color: transparent;
+  height: inherit;
+  display: flex;
+}
+
+.wrapper > input {
+  display: none;
+}
+.slides {
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  height: 100%;
+  flex: 0 0 100%;
   order: 3;
   animation: animation_rigth;
   animation-timing-function: ease-in-out;
   animation-duration: 0.1s;
   animation-fill-mode: forwards;
 }
-.container_for_img img:first-child {
-  order: 1;
+
+.slide1 {
+  background-image: url(./img/tumblr_lqtbu3k4Zw1qfjjglo1_500.gif);
 }
-.container_for_img .active {
-  z-index: 1;
-  flex: 0 0 100%;
-  animation: animation_left;
-  animation-timing-function: ease-in-out;
-  animation-duration: 0.1s;
-  animation-fill-mode: forwards;
+.slide2 {
+  background-image: url(./img/tumblr_lrsbvqwkG61qfjjglo5_250.gif);
+}
+.slide3 {
+  background-image: url(./img/tumblr_lsyqvhWrOq1qfjjglo1_400.gif);
+}
+.slide4 {
+  background-image: url(./img/tumblr_lzr477qbIx1qfjjglo1_r1_500.gif);
+}
+.slide5 {
+  background-image: url(http://habrastorage.org/files/53c/ff6/c1c/53cff6c1caf842368c70b8ef892d8402.jpg);
 }
 
+.slides {
+  background-position: center;
+  background-size: cover;
+}
 @keyframes animation_rigth {
   0% {
     order: 1;
@@ -76,6 +96,18 @@ body {
     transform: translateX(0);
   }
 }
+
+#slide1:checked ~ .slider > .slide1,
+#slide2:checked ~ .slider > .slide2,
+#slide3:checked ~ .slider > .slide3,
+#slide4:checked ~ .slider > .slide4,
+#slide5:checked ~ .slider > .slide5 {
+  animation: animation_left;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+}
+
 .container_for_bulit {
   order: 3;
   gap: 10px;
@@ -93,22 +125,26 @@ body {
 .container_bulit:hover .bulit {
   background-color: white;
 }
-.bulit.active {
+
+#slide1:checked ~ .container_for_bulit label:nth-of-type(1) .bulit,
+#slide2:checked ~ .container_for_bulit label:nth-of-type(2) .bulit,
+#slide3:checked ~ .container_for_bulit label:nth-of-type(3) .bulit,
+#slide4:checked ~ .container_for_bulit label:nth-of-type(4) .bulit {
   border: rgb(126, 181, 245) 3px solid;
   background-color: transparent;
 }
-.container_bulit:hover .bulit.active {
+#slide1:checked ~ .container_for_bulit label:nth-of-type(1):hover .bulit,
+#slide2:checked ~ .container_for_bulit label:nth-of-type(2):hover .bulit,
+#slide3:checked ~ .container_for_bulit label:nth-of-type(3):hover .bulit,
+#slide4:checked ~ .container_for_bulit label:nth-of-type(4):hover .bulit {
   border-color: white;
   background-color: transparent;
 }
-
 .container_bulit {
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-  text-align: center;
   display: flex;
-  justify-content: center;
+  cursor: pointer;
+  height: 30px;
+  z-index: 10;
 }
 .container_for_сommentToPicture {
   order: 2;
@@ -134,15 +170,23 @@ body {
 .сommentToPictur:first-child {
   order: 1;
 }
-.сommentToPictur.active {
+#slide1:checked ~ .container_for_сommentToPicture > .picture1,
+#slide2:checked ~ .container_for_сommentToPicture > .picture2,
+#slide3:checked ~ .container_for_сommentToPicture > .picture3,
+#slide4:checked ~ .container_for_сommentToPicture > .picture4 {
   animation: animation_left;
   animation-timing-function: ease-in-out;
   animation-duration: 0.1s;
   animation-fill-mode: forwards;
 }
-@media (max-width: 600px) {
+@media (max-width: 400px) {
+  .wrapper {
+    margin: 10px auto;
+    height: 100vh;
+  }
   .slider {
     max-width: 100%;
+    height: auto;
   }
   .container_for_сommentToPicture {
     order: 3;
@@ -153,9 +197,7 @@ body {
     width: 100%;
     justify-content: center;
   }
-  .container_for_img img {
-    width: 80%;
-  }
+
   .container_for_сommentToPicture {
     font-size: 1.5em;
   }
